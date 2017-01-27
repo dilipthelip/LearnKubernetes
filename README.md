@@ -20,4 +20,7 @@ Download Kubernetes from the below link.
 
 [Kubernetes Download](https://github.com/kubernetes/minikube/releases)
 
+#### kubectl
+
+- **kubectl** is a command line interface for running commands against Kubernetes clusters.
 
