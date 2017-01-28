@@ -100,4 +100,10 @@ We need the url of the pod.
 minikube service node-123 --url
 ```
 
+### How to get the list of services running in Kubernetes cluster?
+
+```
+kubectl get services
+```
+
 
