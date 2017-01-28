@@ -86,11 +86,18 @@ kubectl port-forward nodehelloworld.example.com 8081:3000
 ```
 
 Approach 2:  
+Exposing the pod as an service.  
+
 ```
 kubectl expose pod <pod> --port=444 --name=frontend 
 
 Example:
 kubectl expose pod nodehelloworld.example.com --type=NodePort --name=node-123
+```
+We need the url of the pod.  
+
+```
+minikube service node-123 --url
 ```
 
 
