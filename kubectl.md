@@ -77,3 +77,20 @@ nodehelloworld.example.com        1/1       Running   0          5m
 ```
 kubectl describe pod nodehelloworld.example.com
 ```
+
+### How to forward the request to this pod?
+
+Approach 1:  
+```
+kubectl port-forward nodehelloworld.example.com 8081:3000
+```
+
+Approach 2:  
+```
+kubectl expose pod <pod> --port=444 --name=frontend 
+
+kubectl expose pod nodehelloworld.example.com --port=NodePort --name=nodeHelloworldService 
+
+```
+
+
