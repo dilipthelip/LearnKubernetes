@@ -33,3 +33,6 @@ curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.5.
 - A pod describes an application running in kubernetes.
 - A pod can contain one or more tightly coupled containers that make up the app.
 
+## Kubernetes Architecture:
+
+![](https://github.com/dilipthelip/LearnKubernetes/blob/master/images/architecture.png)
