@@ -145,7 +145,7 @@ The below command created a new pod with a new container.
 ```
 kubectl run -i --tty busybox --image=busybox --restart=Never -- sh
 ```
-
+The above line will take you to the server.  
 ```
 ls
 
