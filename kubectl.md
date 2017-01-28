@@ -31,3 +31,23 @@ minikube service hello-minikube --url
 ```
 minikube stop
 ```
+
+## Pod Commands:
+
+```
+kubectl get pod : get information about the pod.
+
+kubectl describe pod <pod> : Describe one pod.
+
+kubectl expose pod <pod> --port=444 --name=frontend : Expose the port of a pod
+
+kubectl port-forward <pod> 8080 : Port forward the exposed pod port to your local machine.
+
+kubectl attach <podname> i : Attach to pod
+
+kubectl exec <pod> --command : Execute a command on pod.
+
+kubectl pods <pod> mylabel=awesome  : Add a new label to the pod.
+
+kubectl run -i --tty busybox --image=busybox --restart=Never -- sh  : Run a shell in a pod - very useful for debugging.
+```
