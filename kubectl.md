@@ -100,10 +100,42 @@ We need the url of the pod.
 minikube service node-123 --url
 ```
 
+### How to execute commands in the container?
+
+To list the files inside the container.
+```
+kubectl exec nodehelloworld.example.com ls /app
+```
+
+To create a file inside the container.  
+
+```
+kubectl exec nodehelloworld.example.com touch /app/test.txt
+```
+
 ### How to get the list of services running in Kubernetes cluster?
 
 ```
 kubectl get services
+```
+
+#### How to get service details ?
+
+Using this we can connect to this pod from other pod.  
+
+```
+kubectl describe service node-123
+
+Name:			node-123
+Namespace:		default
+Labels:			app=helloworld
+Selector:		app=helloworld
+Type:			NodePort
+IP:			10.0.0.197
+Port:			<unset>	3000/TCP
+NodePort:		<unset>	32203/TCP
+Endpoints:		172.17.0.5:3000
+Session Affinity:	None
 ```
 
 
