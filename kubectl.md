@@ -57,3 +57,23 @@ kubectl pods <pod> mylabel=awesome  : Add a new label to the pod.
 
 kubectl run -i --tty busybox --image=busybox --restart=Never -- sh  : Run a shell in a pod - very useful for debugging.
 ```
+
+### How to create a pod?
+
+```
+kubectl create -f first-app/helloworld.yml
+```
+
+### How to get the list of pods?
+```
+kubectl get pod
+
+NAME                              READY     STATUS    RESTARTS   AGE
+hello-minikube-3015430129-x684t   1/1       Running   1          1h
+nodehelloworld.example.com        1/1       Running   0          5m
+```
+
+### How to get more information about a pod ?
+```
+kubectl describe pod nodehelloworld.example.com
+```
