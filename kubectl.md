@@ -138,4 +138,24 @@ Endpoints:		172.17.0.5:3000
 Session Affinity:	None
 ```
 
+#### How to connect to one pod from another pod?
+
+The below command created a new pod with a new container.  
+
+```
+kubectl run -i --tty busybox --image=busybox --restart=Never -- sh
+```
+
+```
+ls
+
+telnet 172.17.0.5 3000
+```
+
+Type the below and press enter.  
+```
+GET /
+```
+
+
 
