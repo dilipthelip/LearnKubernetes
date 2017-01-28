@@ -89,8 +89,8 @@ Approach 2:
 ```
 kubectl expose pod <pod> --port=444 --name=frontend 
 
-kubectl expose pod nodehelloworld.example.com --port=NodePort --name=nodeHelloworldService 
-
+Example:
+kubectl expose pod nodehelloworld.example.com --type=NodePort --name=node-123
 ```
 
 
