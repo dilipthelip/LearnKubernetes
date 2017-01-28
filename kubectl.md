@@ -121,7 +121,7 @@ kubectl get services
 
 #### How to get service details ?
 
-Using this we can connect to this pod from other pod.  
+Using the **NodePort** and **Endpoint** we can connect to this pod from other pod.  
 
 ```
 kubectl describe service node-123
