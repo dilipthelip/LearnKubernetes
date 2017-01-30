@@ -33,7 +33,7 @@ kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --por
 The below command will expose the service with type **NodePort**.  
 
 ```
-kubectl expose deployment hello-minikube --type=NodePort
+kubectl expose deployment hello-minikube --type=NodePort --name=hello-123
 ```
 
 ### Service command:
