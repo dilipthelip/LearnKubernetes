@@ -34,6 +34,14 @@ Kubectl commands are available in the below link.
 
 [KUBECTL](https://github.com/dilipthelip/LearnKubernetes/blob/master/kubectl.md)
 
+#### KOPS:
+
+- kops : stands for Kubernetes Operations.
+- The tool allows you to do production grade Kubernetes installations, upgrades and management.
+- We can use the **kops** to set up Kubernetes cluster on AWS.
+- This only works on MAC/Linux.
+
+
 ## What is a pod?
 
 - A pod describes an application running in kubernetes.
