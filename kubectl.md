@@ -8,6 +8,12 @@ Kubectl is a command line tool to connect to kubrnetes cluster.
 curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.5.1/bin/darwin/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/
 ```
 
+### Minikube Dashboard:
+
+```
+minikube dashboard
+```
+
 ### How to start the cluster?
 
 ```
