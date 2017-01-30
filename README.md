@@ -28,6 +28,10 @@ Download Kubernetes from the below link.
 curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.5.1/bin/darwin/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/
 ```
 
+Kubectl commands are available in the below link.  
+
+[KUBECTL](https://github.com/dilipthelip/LearnKubernetes/blob/master/kubectl.md)
+
 ## What is a pod?
 
 - A pod describes an application running in kubernetes.
