@@ -20,30 +20,6 @@ minikube dashboard
 minikube start
 ```
 
-### Run command: 
-
-The below command will pull the image and deploy the image in the local cluster.  
-
-```
-kubectl run hello-minikube --image=gcr.io/google_containers/echoserver:1.4 --port=8080
-```
-
-### Expose command: 
-
-The below command will expose the service with type **NodePort**.  
-
-```
-kubectl expose deployment hello-minikube --type=NodePort --name=hello-123
-```
-
-### Service command:
-
-The below will give you the link to the service running in the cluster.  
-
-```
-minikube service hello-minikube --url
-```
-
 ### How to stop the cluster?
 
 ```
