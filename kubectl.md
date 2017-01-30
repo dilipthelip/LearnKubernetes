@@ -79,6 +79,12 @@ hello-minikube-3015430129-x684t   1/1       Running   1          1h
 nodehelloworld.example.com        1/1       Running   0          5m
 ```
 
+### How to view the logs of a Pod?
+
+```
+kubectl logs <pod>
+```
+
 ### How to get more information about a pod ?
 ```
 kubectl describe pod nodehelloworld.example.com
