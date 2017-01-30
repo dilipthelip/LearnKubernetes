@@ -24,7 +24,7 @@ Download Kubernetes from the below link.
 
 - **kubectl** is a command line interface for running commands against Kubernetes clusters.
 
-Install kubectl by running the below command in mac.  
+**Install kubectl** by running the below command in mac.  
 
 ```
 curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.5.1/bin/darwin/amd64/kubectl && chmod +x kubectl && sudo mv kubectl /usr/local/bin/
