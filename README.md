@@ -55,4 +55,5 @@ Kubectl commands are available in the below link.
 - **kubelet :** It is responsible to launch the pods.It will connect to the master node to get this information.
 - **kubeproxy :** This feeds information to the iptables about the pods.Whenever a new pod is added, kubeproxy updates the iptables with the new pod.  
 - **iptable :** This is the firewall in linux to route traffic.
+- **service :** The service layer acts as a load balancer and its publicly available. It routes the traffic to the kubernetes cluster. Service will have all the nodes listed in it. This forwards the request to the kubernetes cluster and then to the ip tables.IPtables then runs the rule and determines which pod and which container to connect to.
 
