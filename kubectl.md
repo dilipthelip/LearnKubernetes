@@ -133,7 +133,7 @@ Approach 2:
 Exposing the pod as an service.  
 
 ```
-kubectl expose pod <pod> --port=444 --name=frontend 
+kubectl expose pod <pod> --port=444 --type=NodePort --name=frontend 
 
 Example:
 kubectl expose pod nodehelloworld.example.com --type=NodePort --name=node-123
