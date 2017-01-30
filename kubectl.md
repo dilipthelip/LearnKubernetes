@@ -107,12 +107,23 @@ kubectl run <anyname> --image=<imagename>:<version> --port=8080 --env="ENVIRONME
 ```
 
 ### How to get the list of pods?
+
 ```
 kubectl get pod
 
 NAME                              READY     STATUS    RESTARTS   AGE
 hello-minikube-3015430129-x684t   1/1       Running   1          1h
 nodehelloworld.example.com        1/1       Running   0          5m
+```
+
+### How to get the list of pods with ip ?
+
+```
+kubectl get pod -o wide
+
+NAME                                READY     STATUS    RESTARTS   AGE       IP           NODE
+hello-minikube-3015430129-x684t     1/1       Running   2          2d        172.17.0.2   minikube
+nodehelloworld.example.com          1/1       Running   1          1d        172.17.0.5   minikube
 ```
 
 ### How to view the logs of a Pod?
