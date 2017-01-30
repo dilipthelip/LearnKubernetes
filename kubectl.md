@@ -111,6 +111,8 @@ nodehelloworld.example.com        1/1       Running   0          5m
 
 ### How to view the logs of a Pod?
 
+Using the below command we can view the application start up logs.  
+
 ```
 kubectl logs <pod>
 ```
