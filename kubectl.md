@@ -71,7 +71,12 @@ spec:
     image: wardviaene/k8s-demo
     ports:
     - name: nodejs-port
-      containerPort: 3000
+        containerPort: 3000
+      env:
+      - name: ENVIRONMENT
+        value: "dev"
+      - name: JDBC_PASSWORD
+        value: "xyz"
 ```
 
 Approach 2:  
