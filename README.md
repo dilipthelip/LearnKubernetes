@@ -53,5 +53,4 @@ Kubectl commands are available in the below link.
 
 - Each node has a docker installed in it to run the docker images.  
 - **kubelet :** It is responsible to launch the pods.It will connect to the master node to get this information.
-- **kubeproxy :** This feeds information to the iptables about the pods.Whenever a new pod is added, kubeproxy updates the iptables with the new pod to make this pod to be routable and receive requests.  
-- 
+- **kubeproxy :** This feeds information to the iptables about the pods.Whenever a new pod is added, kubeproxy updates the iptables with the new pod.  
