@@ -66,8 +66,38 @@ kubectl run -i --tty busybox --image=busybox --restart=Never -- sh  : Run a shel
 
 ### How to create a pod?
 
+Approach 1:  
+
+The below approach will have the whole configuration available in the yml file.In this case the docker image will be pulled from the docker hub and deployed in to kubernetes.  
+
 ```
 kubectl create -f first-app/helloworld.yml
+```
+
+```
+Example helloworld.yml:
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nodehelloworld.example.com
+  labels:
+    app: helloworld
+spec:
+  containers:
+  - name: k8s-demo
+    image: wardviaene/k8s-demo
+    ports:
+    - name: nodejs-port
+      containerPort: 3000
+```
+
+Approach 2:  
+
+Have the image then run the below command.  
+
+```
+kubectl run <anyname> --image=<imagename>:<version> --port=8080 --env="ENVIRONMENT=dev" --env="JDBC_PASSWORD=xyz"
 ```
 
 ### How to get the list of pods?
