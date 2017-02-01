@@ -143,6 +143,12 @@ Have the image then run the below command.
 kubectl run <anyname> --image=<imagename>:<version> --port=8080 --env="ENVIRONMENT=dev" --env="JDBC_PASSWORD=xyz"
 ```
 
+### How to get the status of the deployment ?
+
+```
+kubectl rollout status deployment/<deployment-name>
+```
+
 ### How to get the list of pods?
 
 ```
