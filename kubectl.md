@@ -110,7 +110,7 @@ spec:
             memory: 512Mi
         ports:
         - containerPort: 8080
-          name: ddustore-api
+          name: store-api
         readinessProbe:
           httpGet:
             path: /
@@ -169,7 +169,7 @@ nodehelloworld.example.com          1/1       Running   1          1d        172
  kubectl get pods --show-labels
 
 NAME                              READY     STATUS             RESTARTS   AGE       LABELS
-application-api-1241476493-77m2b     1/1       Running            6          38m       app=ddustore-api,pod-template-hash=1241476493
+application-api-1241476493-77m2b     1/1       Running            6          38m       app=store-api,pod-template-hash=1241476493
 
 ```
 
@@ -204,7 +204,7 @@ Approach 2:
 
 Type the below and press enter.  
 ```
-kubectl delete deployment ddustore-api
+kubectl delete deployment store-api
 
 Note: This will not delete a service so you will still need to run 'kubectl delete service <servicename'
 ```
@@ -229,7 +229,7 @@ kubectl expose pod nodehelloworld.example.com --type=NodePort --name=node-123
 
 Approach 3:
 Exposing a service if you completed a multi pod 'Deployment'.
-kubectl expose rs ddustore-api-1241476493 --port=8080 --target-port=8080 --type=NodePort
+kubectl expose rs store-api-1241476493 --port=8080 --target-port=8080 --type=NodePort
 
 ```
 We need the url of the pod.  
@@ -278,14 +278,14 @@ Syntax:
 kubectl create secret generic <secret name> --from-file=<key name>=./password.txt
 
 Example:
-kubectl create secret generic ddu-store-dev-db-password --from-file=db-password=./password.txt
+kubectl create secret generic store-dev-db-password --from-file=db-password=./password.txt
 
 3. View secrets setup
 kubectl get secrets
 kubectl describe secrets/<secretname>
 
 Example:
-kubectl describe secrets/ddu-store-dev-db-password
+kubectl describe secrets/store-dev-db-password
 ```
 
 ### How to execute commands in the container?
