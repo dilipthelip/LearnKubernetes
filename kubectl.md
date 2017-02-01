@@ -155,6 +155,18 @@ kubectl rollout status deployment/<deployment-name>
 ```
 kubectl set image deployment/<deployment-name> <container-name>=imageName
 ```
+### How to get the history of deploymentse ?
+
+```
+kubectl rollout history deployment/<deployment name>
+
+Example:
+kubectl rollout history deployment/helloworld-deployment
+
+deployments "helloworld-deployment"
+REVISION	CHANGE-CAUSE
+1		<none>
+```
 
 ### How to get the list of pods?
 
