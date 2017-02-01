@@ -57,3 +57,18 @@ Kubectl commands are available in the below link.
 - **iptable :** This is the firewall in linux to route traffic.
 - **service :** The service layer acts as a load balancer and its publicly available. It routes the traffic to the kubernetes cluster. Service will have all the nodes listed in it. This forwards the request to the kubernetes cluster and then to the ip tables.IPtables then runs the rule and determines which pod and which container to connect to.
 
+## Scaling:
+
+- If the application is stateless you can scale the app horizaontally.
+  - Stateless = your application doesnt have a state, it doesnt write any local files/keep local sessions.
+  - All traditional databases are stateful , they have database files that can't be split over multiple instances.
+- Most web application can be stateless.
+  - Session Management should be done outside container.
+  - Any file that need to be saved cannot be saved locally on the container.
+- Stateful apps can't run horiziontally scale, but you can run them in single container and vertically scale it.( allocate more memory /CPU/Disk).
+
+- **Scaling** in Kubernetes is done using **Replication Controller**. 
+- The replication controller makes sure that specific number of pod replicas will run all the time.  
+- A pod created with the replica controller will automatically be replaced id they fail , get deleted or terminated.
+- Using replication controller is also recommended if you just want to make sure 1 pod always running, even after reboots.
+
