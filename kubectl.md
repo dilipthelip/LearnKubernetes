@@ -56,8 +56,14 @@ The below approach will have the whole configuration available in the yml file.I
 kubectl create -f first-app/helloworld.yml
 ```
 
+or  
+
 ```
-Example helloworld.yml:
+kubectl apply -f first-app/helloworld.yml
+```
+
+```
+Example 1 helloworld.yml: Create a single pod
 
 apiVersion: v1
 kind: Pod
@@ -77,6 +83,56 @@ spec:
         value: "dev"
       - name: JDBC_PASSWORD
         value: "xyz"
+
+Example 2 ddustore-api: Create a deployment with Pod replication
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: ddustore-api
+spec:
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: ddustore-api
+    spec:
+      containers:
+      - name:  ddustore-api
+        image: delivery-services-transportation.docker.target.com/ddustore-api:1.1.0-SNAPSHOT
+        imagePullPolicy: Never
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: 200m
+            memory: 512Mi
+        ports:
+        - containerPort: 8080
+          name: ddustore-api
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 10
+          timeoutSeconds: 10
+          failureThreshold: 5
+        env:
+        - name: ENVIRONMENT
+          valueFrom:
+          secretKeyRef:
+            name: env
+            key: env
+        - name: JDBC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ddu-store-db-password
+              key: db-password
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 2
 ```
 
 Approach 2:  
@@ -107,6 +163,18 @@ hello-minikube-3015430129-x684t     1/1       Running   2          2d        172
 nodehelloworld.example.com          1/1       Running   1          1d        172.17.0.5   minikube
 ```
 
+### How to get the list of pods with lables ?
+
+```
+ kubectl get pods --show-labels
+
+NAME                              READY     STATUS             RESTARTS   AGE       LABELS
+ddustore-api-1241476493-77m2b     1/1       Running            6          38m       app=ddustore-api,pod-template-hash=1241476493
+ddustore-api-1241476493-954kx     1/1       Running            5          38m       app=ddustore-api,pod-template-hash=1241476493
+ddustore-api-1241476493-l93vs     0/1       CrashLoopBackOff   4          38m       app=ddustore-api,pod-template-hash=1241476493
+
+```
+
 ### How to view the logs of a Pod?
 
 Using the below command we can view the application start up logs.  
@@ -118,6 +186,29 @@ kubectl logs <pod>
 ### How to get more information about a pod ?
 ```
 kubectl describe pod nodehelloworld.example.com
+```
+
+### How to delete a deployment/service?
+
+Approach 1:  
+
+```
+kubectl delete -f <deployment/service>.yaml
+
+Example:
+
+kubectl delete -f deployment.yaml
+
+kubectl delete -f service.yaml
+
+```
+Approach 2:  
+
+Type the below and press enter.  
+```
+kubectl delete deployment ddustore-api
+
+Note: This will not delete a service so you will still need to run 'kubectl delete service <servicename'
 ```
 
 ### How to forward the request to this pod?
@@ -133,28 +224,20 @@ Approach 2:
 Exposing the pod as an service.  
 
 ```
-kubectl expose pod <pod> --port=444 --type=NodePort --name=frontend 
+kubectl expose pod <pod> --port=444 --type=NodePort --name=frontend
 
 Example:
 kubectl expose pod nodehelloworld.example.com --type=NodePort --name=node-123
+
+Approach 3:
+Exposing a service if you completed a multi pod 'Deployment'.
+kubectl expose rs ddustore-api-1241476493 --port=8080 --target-port=8080 --type=NodePort
+
 ```
 We need the url of the pod.  
 
 ```
 minikube service node-123 --url
-```
-
-### How to execute commands in the container?
-
-To list the files inside the container.
-```
-kubectl exec nodehelloworld.example.com ls /app
-```
-
-To create a file inside the container.  
-
-```
-kubectl exec nodehelloworld.example.com touch /app/test.txt
 ```
 
 ### How to get the list of services running in Kubernetes cluster?
@@ -182,6 +265,44 @@ Endpoints:		172.17.0.5:3000
 Session Affinity:	None
 ```
 
+
+
+
+#### How to setup secrets to use in a deployment?
+
+Type the below and press enter.  
+```
+1. Create a file with a secret
+echo "apassword" > password.txt
+
+2. Setup a secret
+Syntax:
+kubectl create secret generic <secret name> --from-file=<key name>=./password.txt
+
+Example:
+kubectl create secret generic ddu-store-dev-db-password --from-file=db-password=./password.txt
+
+3. View secrets setup
+kubectl get secrets
+kubectl describe secrets/<secretname>
+
+Example:
+kubectl describe secrets/ddu-store-dev-db-password
+```
+
+### How to execute commands in the container?
+
+To list the files inside the container.
+```
+kubectl exec nodehelloworld.example.com ls /app
+```
+
+To create a file inside the container.  
+
+```
+kubectl exec nodehelloworld.example.com touch /app/test.txt
+```
+
 #### How to connect to one pod from another pod?
 
 The below command created a new pod with a new container.  
@@ -200,6 +321,3 @@ Type the below and press enter.
 ```
 GET /
 ```
-
-
-
