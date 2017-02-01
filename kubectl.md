@@ -142,31 +142,7 @@ Have the image then run the below command.
 ```
 kubectl run <anyname> --image=<imagename>:<version> --port=8080 --env="ENVIRONMENT=dev" --env="JDBC_PASSWORD=xyz"
 ```
-## Deployment : 
 
-### How to get the status of the deployment ?
-
-```
-kubectl rollout status deployment/<deployment-name>
-```
-
-### How to update the image ?
-
-```
-kubectl set image deployment/<deployment-name> <container-name>=imageName
-```
-### How to get the history of deploymentse ?
-
-```
-kubectl rollout history deployment/<deployment name>
-
-Example:
-kubectl rollout history deployment/helloworld-deployment
-
-deployments "helloworld-deployment"
-REVISION	CHANGE-CAUSE
-1		<none>
-```
 
 ### How to get the list of pods?
 
@@ -343,4 +319,40 @@ telnet 172.17.0.5 3000
 Type the below and press enter.  
 ```
 GET /
+```
+
+## Deployment : 
+
+### How to get the status of the deployment ?
+
+```
+kubectl rollout status deployment/<deployment-name>
+```
+
+### How to update the image ?
+
+```
+kubectl set image deployment/<deployment-name> <container-name>=imageName
+```
+### How to get the history of deploymentse ?
+
+```
+kubectl rollout history deployment/<deployment name>
+
+Example:
+kubectl rollout history deployment/helloworld-deployment
+
+deployments "helloworld-deployment"
+REVISION	CHANGE-CAUSE
+1		<none>
+```
+
+### How to rollout to previous deployment ?
+
+```
+kubectl rollout undo deployment/<deployment-name>
+
+Example:
+kubectl rollout undo deployment/helloworld-deployment
+
 ```
