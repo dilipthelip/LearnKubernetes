@@ -84,22 +84,22 @@ spec:
       - name: JDBC_PASSWORD
         value: "xyz"
 
-Example 2 ddustore-api: Create a deployment with Pod replication
+Example 2 application-api: Create a deployment with Pod replication
 
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: ddustore-api
+  name: application-api
 spec:
   replicas: 5
   template:
     metadata:
       labels:
-        app: ddustore-api
+        app: application-api
     spec:
       containers:
-      - name:  ddustore-api
-        image: delivery-services-transportation.docker.target.com/ddustore-api:1.1.0-SNAPSHOT
+      - name:  application-api
+        image: application:1.1.0-SNAPSHOT
         imagePullPolicy: Never
         resources:
           requests:
@@ -127,7 +127,7 @@ spec:
         - name: JDBC_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: ddu-store-db-password
+              name: xyz-db-password
               key: db-password
   strategy:
     rollingUpdate:
@@ -169,9 +169,7 @@ nodehelloworld.example.com          1/1       Running   1          1d        172
  kubectl get pods --show-labels
 
 NAME                              READY     STATUS             RESTARTS   AGE       LABELS
-ddustore-api-1241476493-77m2b     1/1       Running            6          38m       app=ddustore-api,pod-template-hash=1241476493
-ddustore-api-1241476493-954kx     1/1       Running            5          38m       app=ddustore-api,pod-template-hash=1241476493
-ddustore-api-1241476493-l93vs     0/1       CrashLoopBackOff   4          38m       app=ddustore-api,pod-template-hash=1241476493
+application-api-1241476493-77m2b     1/1       Running            6          38m       app=ddustore-api,pod-template-hash=1241476493
 
 ```
 
